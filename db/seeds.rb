@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+samples = %w(Ruby Java Python Go)
+samples.each do |sample|
+  Genre.create(name: sample)
+end

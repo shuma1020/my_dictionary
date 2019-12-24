@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -15,17 +15,20 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @genre = Genre.new
   end
 
   # GET /posts/1/edit
   def edit
+    @genre = Genre.new
   end
 
   # POST /posts
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    genre = @post.genres.new(genre_params)
+    genre.save
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -40,7 +43,11 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    p "####"
+    genre = @post.genres.create!(genre_params)
+
     respond_to do |format|
+      p format
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
@@ -77,6 +84,14 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :status, :posted_at, :reason, :rank, :summary)
+      params.require(:post).permit(:title, :body, :status, :posted_at, :reason, :rank, :summary, genre_ids: [])
+    end
+
+    def genre_params
+      params.require(:genre).permit(:name)
+    end
+
+    def manage_params
+      params.require(:manage).permit(:post_id, :genre_id)
     end
 end

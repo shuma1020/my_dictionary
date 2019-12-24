@@ -1,5 +1,5 @@
 <div class="container">
-<%= form_with(model: post, local: true) do |form| %>
+<%= form_with(model:post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -45,8 +45,21 @@
     <%= form.text_field :summary, class:"form-control" %>
   </div>
 
+  <%= form.label :genre, 'ジャンル' %>
+    <%= form.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
+      <%= genre.label do %>
+        <%= genre.check_box %>
+        <%= genre.text %>
+      <% end %>
+    <% end %><br>
+    <%= fields_for @genre, :genres do |form| %>
+      <%= form.label :新しくジャンルを作る %>
+      <%= form.text_field :name, class:"form-control" %>
+    <% end %>
+  
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-info" %>
   </div>
 <% end %>
 </div>

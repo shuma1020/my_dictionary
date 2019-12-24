@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_052810) do
+ActiveRecord::Schema.define(version: 2019_12_24_064012) do
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "manages", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_manages_on_genre_id"
+    t.index ["post_id"], name: "index_manages_on_post_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
