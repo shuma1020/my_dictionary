@@ -61,6 +61,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def important
+    @posts = Post.where(rank:"important")
+  end
+
+  def most
+    @posts = Post.where(rank:"most")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
