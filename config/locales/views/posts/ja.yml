@@ -1,0 +1,8 @@
+ja:
+  posts:
+    index:
+      title: 'タイトル'
+    show:
+      title: '%{user_name}さんのユーザ情報' # 引数の指定もできる。
+    edit:
+      title: '%{user_name}さんのユーザ情報を編集'
