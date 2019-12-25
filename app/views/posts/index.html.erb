@@ -24,7 +24,7 @@
           <td><%= post.body %></td>
           <td><%= post.status %></td>
           <td><%= post.reason %></td>
-          <td><%= post.posted_at %></td>
+          <td><%= post.posted_at.strftime("%Y-%m-%d") %></td>
           <td><%= post.rank %></td>
           <td><%= post.summary %></td>
           <% post.genres.each do |genre| %>
@@ -40,3 +40,4 @@
 <br>
 
 <%= link_to '辞書を作成する', new_post_path %>
+

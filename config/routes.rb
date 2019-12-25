@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     collection do
       get "important"
       get "most"
+      get "search"
     end
   end
   root "posts#index"

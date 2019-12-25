@@ -6,4 +6,15 @@ class Post < ApplicationRecord
   enum rank: {important: 0, most:1}
   has_many :manages
   has_many :genres, through: :manages
+
+  class << self
+    def search(query)
+      if query.present?
+        Post.left_outer_joins(:genres).where("posts.title LIKE ? or genres.name LIKE ?","%#{query}%","%#{query}%")
+
+      else
+        Post.all
+      end
+    end
+  end
 end

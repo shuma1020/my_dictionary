@@ -43,7 +43,6 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    p "####"
     genre = @post.genres.create!(genre_params)
 
     respond_to do |format|
@@ -74,6 +73,12 @@ class PostsController < ApplicationController
 
   def most
     @posts = Post.where(rank:"most")
+  end
+
+  def search
+    params[:q]
+    @posts = Post.search(params[:q])
+    render "index"
   end
 
   private
