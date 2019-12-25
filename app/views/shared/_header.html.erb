@@ -12,10 +12,13 @@
         <li class="nav-item">
           <%= link_to "Most!!", :most_posts , class:"nav-link"%>
         </li>
+        <li class="nav-item">
+          <%= link_to '辞書を作成する', new_post_path, class:"nav-link" %>
+        </li>
       </ul>
-      <%=form_tag :search_posts, method: :get, class: "search" do%>
-        <%= text_field_tag "q", params[:q] %>
-        <%= submit_tag "検索"%>
+      <%=form_tag :search_posts, method: :get, class: "form-inline mt-2 mt-md-0" do%>
+        <%= text_field_tag "q", params[:q] , class:"form-control mr-sm-2" %>
+        <%= submit_tag "検索" ,class:"btn btn-outline-success my-2 my-sm-0"%>
       <% end %>
     </div>
   </nav>
