@@ -45,6 +45,11 @@
     <%= form.text_field :summary, class:"form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= form.label :URL %>
+    <%= form.text_field :url, class:"form-control" %>
+  </div>
+
   <%= form.label :genre, 'ジャンル' %>
     <%= form.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %>
       <%= genre.label do %>

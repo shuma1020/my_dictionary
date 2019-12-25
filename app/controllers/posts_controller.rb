@@ -26,7 +26,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    p "#####"
+    p @post = Post.new(post_params)
     genre = @post.genres.new(genre_params)
     genre.save
     respond_to do |format|
@@ -89,7 +90,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :status, :posted_at, :reason, :rank, :summary, genre_ids: [])
+      params.require(:post).permit(:title, :body, :status, :posted_at, :reason, :rank, :url, :summary, genre_ids: [])
     end
 
     def genre_params
