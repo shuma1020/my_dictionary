@@ -28,7 +28,7 @@
             <td><%= post.posted_at.strftime("%Y-%m-%d") %></td>
             <td><%= post.rank %></td>
             <td><%= post.summary %></td>
-            <td><%= link_to post.url  %></td>
+            <td><%= link_to post.url, post.url  %></td>
             <% post.genres.each do |genre| %>
               <td><%= genre.name %></td>
             <% end %>
