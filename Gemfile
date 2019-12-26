@@ -32,6 +32,7 @@ gem 'rails-i18n'
 gem 'hirb'
 gem 'hirb-unicode'
 gem "jquery-rails"
+gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
