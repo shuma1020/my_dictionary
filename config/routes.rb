@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     end
   end
   root "posts#index"
-  resources :genres
+  resources :genres do
+    resources :posts, only: [:show]
+  end
 end
