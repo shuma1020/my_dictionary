@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Bootstrap Sidebar</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">あなたが作成したジャンル</a>
+                <% @genres.each do |genre| %>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+
+                    <li>
+                        <a href="#"><%= genre.name %></a>
+                    </li>
+                </ul>
+                <% end %>
+            </li>
+        </ul>
+    </nav>
+
+</div>

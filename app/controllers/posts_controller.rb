@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_genres
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   # GET /posts/1
@@ -26,8 +26,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    p "#####"
-    p @post = Post.new(post_params)
+    @post = Post.new(post_params)
     genre = @post.genres.new(genre_params)
     genre.save
     respond_to do |format|
@@ -45,10 +44,10 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     genre = @post.genres.create!(genre_params)
-
+    aa = post_params
+    aa[:genre_ids] << genre.id
     respond_to do |format|
-      p format
-      if @post.update(post_params)
+      if @post.update(aa)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -99,5 +98,9 @@ class PostsController < ApplicationController
 
     def manage_params
       params.require(:manage).permit(:post_id, :genre_id)
+    end
+
+    def set_genres
+      @genres = Genre.all
     end
 end
