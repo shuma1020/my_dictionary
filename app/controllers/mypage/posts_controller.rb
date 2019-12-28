@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Mypage::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_genres
   # GET /posts
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
     genre.save
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to mypage_post_path(@post), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
     aa[:genre_ids] << genre.id
     respond_to do |format|
       if @post.update(aa)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to mypage_post_path(@post), notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to mypage_posts_path(@post), notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

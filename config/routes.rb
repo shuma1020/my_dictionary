@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  resources :posts do
-    collection do
-      get "important"
-      get "most"
-      get "search"
+  namespace :mypage do
+    resources :posts do
+      collection do
+        get "important"
+        get "most"
+        get "search"
+      end
+    end
+    resources :genres do
+      resources :posts, only: [:show]
     end
   end
-  root "posts#index"
-  resources :genres do
-    resources :posts, only: [:show]
-  end
+  root "mypage/posts#index"
 end
