@@ -20,6 +20,9 @@
         <%=render "shared/header"%>
       </header>
       <div role=main>
+        <% if user_signed_in? %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% end %>
         <section class="jumbotron text-center">
           <div class="container">
               <% if flash.notice %>
