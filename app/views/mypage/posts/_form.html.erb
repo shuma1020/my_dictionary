@@ -12,12 +12,10 @@
     </div>
   <% end %>
   <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class:"form-control" %>
+    <%= form.text_field :title, class:"form-control", placeholder:"タイトル" %>
   </div >
   <div class="form-group">
-    <%= form.label :body %>
-    <%= form.text_area :body, class:"form-control" %>
+    <%= form.text_area :body, class:"form-control", placeholder:"自分の辞書をマークダウン記法で記入してみよう" %>
   </div>
 
   <div class="field">
@@ -31,8 +29,7 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :reason %>
-    <%= form.text_area :reason, class:"form-control" %>
+    <%= form.text_area :reason, class:"form-control", placeholder:"メモした経緯を書いてみよう" %>
   </div>
 
   <div class="field">
@@ -61,7 +58,6 @@
       <%= form.label :新しくジャンルを作る %>
       <%= form.text_field :name, class:"form-control" %>
     <% end %>
-
 
   <div class="actions">
     <%= form.submit class:"btn btn-info" %>

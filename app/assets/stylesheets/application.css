@@ -13,9 +13,6 @@
  *= require_tree .
  *= require_self
  */
-#wrapper{
-  display: flex;
-}
 ul, li{
   list-style: none;
 }

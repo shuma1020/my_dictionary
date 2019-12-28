@@ -44,7 +44,7 @@
 
 
 <% if request.path.include?("genre")%>
-<%= link_to 'Back', genre_path(@genre) %>
+<%= link_to 'Back', mypage_genre_path(@genre) %>
 <% else %>
 <%= link_to 'Edit', edit_mypage_post_path(@post) %> |
 <%= link_to 'Back', mypage_posts_path %>
