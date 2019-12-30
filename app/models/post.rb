@@ -17,4 +17,5 @@ class Post < ApplicationRecord
       end
     end
   end
+  belongs_to :user
 end

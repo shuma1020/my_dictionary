@@ -1,10 +1,11 @@
 class Mypage::PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_genres
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.page(params[:page]).per(10).order(created_at: :desc)
+    @posts = current_user.posts.page(params[:page]).per(10).order(created_at: :desc)
   end
 
   # GET /posts/1
@@ -17,7 +18,7 @@ class Mypage::PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = current_user.posts.new
     @genre = Genre.new
   end
 
@@ -29,9 +30,9 @@ class Mypage::PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-    genre = @post.genres.new(genre_params)
-    genre.save
+    @post = current_user.posts.new(post_params)
+    @genre = @post.genres.new(genre_params)
+    @genre.save
     respond_to do |format|
       if @post.save
         format.html { redirect_to mypage_post_path(@post), notice: 'Post was successfully created.' }

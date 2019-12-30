@@ -8,7 +8,6 @@
       <tr>
         <th class="list__item1">タイトル</th>
         <th class="list__item2">内容</th>
-        <th class="list__item3">公開状況</th>
         <th class="list__item4">経緯</th>
         <th class="list__item5">投稿日</th>
         <th class="list__item7">要約</th>
@@ -19,7 +18,6 @@
         <tr>
           <td><%= link_to post.title, mypage_post_path(post) %></td>
           <td><%= post.body.truncate(15) %></td>
-          <td><%= post.status %></td>
           <td><%= post.reason %></td>
           <td><%= post.posted_at.strftime("%m-%d") %></td>
           <td><%= post.summary %></td>

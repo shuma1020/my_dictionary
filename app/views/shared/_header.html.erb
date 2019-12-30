@@ -1,3 +1,4 @@
+<% if user_signed_in?%>
   <%= javascript_include_tag 'demo_js' %>
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <%= link_to "My辞書", "/" , class:"navbar-brand"%>
@@ -23,3 +24,24 @@
       <% end %>
     </div>
   </nav>
+<% else %>
+  <%= javascript_include_tag 'demo_js' %>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <%= link_to "My辞書", "/" , class:"navbar-brand"%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <%= link_to "ユーザー登録", :new_user_registration , class:"nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログイン", :new_user_session , class:"nav-link"%>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+<% end %>

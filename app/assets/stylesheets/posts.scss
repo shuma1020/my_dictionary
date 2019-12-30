@@ -3,4 +3,25 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 #wrapper{
   display: flex;
+  justify-content: space-around;
 }
+
+
+.list {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+tr {
+  border-bottom: solid 1px #333;
+}
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 1rem 0;
+}
+
+
