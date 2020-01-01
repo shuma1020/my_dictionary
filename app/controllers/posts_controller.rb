@@ -34,6 +34,7 @@ class PostsController < ApplicationController
     @genre.save
     respond_to do |format|
       if @post.save
+        p @post.errors
         format.html { redirect_to mypage_post_path(@post), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else

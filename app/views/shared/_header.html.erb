@@ -1,7 +1,7 @@
 <% if user_signed_in?%>
   <%= javascript_include_tag 'demo_js' %>
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <%= link_to "My辞書", "/" , class:"navbar-brand"%>
+    <%= link_to "My辞書", :mypage_posts, class:"navbar-brand"%>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
       <span class="navbar-toggler-icon"></span>
     </button>
