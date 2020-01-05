@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :posts
   enum status: {draft: 0, release:1}
+  has_many :genres
 end

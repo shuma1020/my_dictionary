@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_30_012108) do
+ActiveRecord::Schema.define(version: 2020_01_05_130711) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "manages", force: :cascade do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_012108) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["genre_id"], name: "index_manages_on_genre_id"
     t.index ["post_id"], name: "index_manages_on_post_id"
   end
@@ -42,6 +44,15 @@ ActiveRecord::Schema.define(version: 2019_12_30_012108) do
     t.integer "user_id"
   end
 
+  create_table "user_genres", force: :cascade do |t|
+    t.integer "genre_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_user_genres_on_genre_id"
+    t.index ["user_id"], name: "index_user_genres_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,6 +61,8 @@ ActiveRecord::Schema.define(version: 2019_12_30_012108) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

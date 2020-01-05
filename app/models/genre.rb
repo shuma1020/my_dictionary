@@ -11,4 +11,5 @@ class Genre < ApplicationRecord
       @genre = Genre.create(name: nil)
     end
   end
+  belongs_to :user
 end
