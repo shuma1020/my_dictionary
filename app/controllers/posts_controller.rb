@@ -29,12 +29,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-    @genre = @post.genres.new(genre_params)
+    p "kioaji"
+    p @post = current_user.posts.new(post_params)
+    p "9393"
+    p @genre = @post.genres.new(genre_params)
     @genre.save
     respond_to do |format|
       if @post.save
-        p @post.errors
         format.html { redirect_to mypage_post_path(@post), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
