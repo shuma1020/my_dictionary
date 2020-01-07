@@ -5,19 +5,35 @@
             <h3>ジャンル一覧</h3>
         </div>
 
-        <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">あなたが作成したジャンル</a>
-                <% @genres.each do |genre| %>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
+        <% if user_signed_in? %>
+          <ul class="list-unstyled components">
+              <li class="active">
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">あなたが作成したジャンル</a>
+                  <% @genres.each do |genre| %>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
 
-                    <li>
-                        <%=link_to genre.name, mypage_genre_path(genre) %>
-                    </li>
-                </ul>
-                <% end %>
-            </li>
-        </ul>
+                      <li>
+                          <%=link_to genre.name, mypage_genre_path(genre) %>
+                      </li>
+                  </ul>
+                  <% end %>
+              </li>
+          </ul>
+        <% else %>
+          <ul class="list-unstyled components">
+              <li class="active">
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ジャンル</a>
+                  <% @genres.each do |genre| %>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+
+                      <li>
+                          <%=link_to genre.name, mypage_genre_path(genre) %>
+                      </li>
+                  </ul>
+                  <% end %>
+              </li>
+          </ul>
+        <% end %>
     </nav>
 
 </div>
