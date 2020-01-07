@@ -7,7 +7,7 @@ ja:
           id: ID
           title: タイトル # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
           body: 内容
-          stautus: 公開状況
+          status: 公開状況
           posted_at: 投稿日
           reason: メモした経緯
           rank: 重要度

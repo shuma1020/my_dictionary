@@ -32,9 +32,8 @@ class Mypage::PostsController < ApplicationController
   def create
     @post = current_user.posts.new(post_params)
     @genre = @post.genres.new(genre_params)
-    p "3333333"
-    p @genre.user_id = current_user.id
-    p @genre.save
+    @genre.user_id = current_user.id
+    @genre.save
     respond_to do |format|
       if @post.save
         format.html { redirect_to mypage_post_path(@post), notice: 'Post was successfully created.' }
