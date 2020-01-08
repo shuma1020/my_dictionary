@@ -20,7 +20,7 @@
       <% @posts.each do |post| %>
         <tr>
           <td><%= link_to post.title, mypage_post_path(post) %></td>
-          <td><%= post.body.truncate(15) %></td>
+          <td><%= post.body %></td>
           <td><%= post.status_i18n %></td>
           <td><%= post.reason %></td>
           <td><%= post.posted_at.strftime("%m-%d") %></td>
