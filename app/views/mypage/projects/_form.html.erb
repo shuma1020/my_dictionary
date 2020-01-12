@@ -1,8 +1,8 @@
 <div class="container">
-  <%= form_with(model: [:mypage, post], local: true) do |form| %>
-    <% if post.errors.any? %>
+  <%= form_with(model: [:mypage, project], local: true) do |form| %>
+    <% if project.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+        <h2><%= pluralize(project.errors.count, "error") %> prohibited this post from being saved:</h2>
 
         <ul>
           <% post.errors.full_messages.each do |message| %>
@@ -72,7 +72,7 @@ window.onload = function() {
 new Vue({
 el: '#editor',
 data: {
-input: '<%== j @post.body %>',
+input: '<%== j @project.body %>',
 },
 filters: {
 marked: marked,

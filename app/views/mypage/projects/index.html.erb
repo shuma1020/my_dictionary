@@ -17,24 +17,24 @@
         <th class="list__item10">編集する</th>
         <th class="list__item11">削除する</th>
       </tr>
-      <% @posts.each do |post| %>
+      <% @projects.each do |p| %>
         <tr>
-          <td><%= link_to post.title, mypage_post_path(post) %></td>
-          <td><%= post.body %></td>
-          <td><%= post.status_i18n %></td>
-          <td><%= post.reason %></td>
-          <td><%= post.posted_at.strftime("%m-%d") %></td>
-          <td><%= post.summary %></td>
-          <td><%= link_to post.url, post.url  %></td>
-          <% post.genres.each do |genre| %>
+          <td><%= link_to post.title, mypage_post_path(p) %></td>
+          <td><%= p.body %></td>
+          <td><%= p.status_i18n %></td>
+          <td><%= p.reason %></td>
+          <td><%= p.posted_at.strftime("%m-%d") %></td>
+          <td><%= p.summary %></td>
+          <td><%= link_to p.url, p.url  %></td>
+          <% p.genres.each do |genre| %>
             <td><%= genre.name %></td>
           <% end %>
-          <td><%= link_to 'Edit', edit_mypage_post_path(post) %></td>
-          <td><%= link_to 'Destroy', mypage_post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Edit', edit_mypage_project_path(p) %></td>
+          <td><%= link_to 'Destroy', mypage_project_path(p), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </table>
-    <%= paginate @posts%>
+    <%= paginate @projects%>
     <br>
   </div>
 </div>

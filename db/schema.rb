@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_05_130711) do
+ActiveRecord::Schema.define(version: 2020_01_12_054842) do
+
+  create_table "emails", force: :cascade do |t|
+    t.integer "projectmember_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
+    t.index ["projectmember_id"], name: "index_emails_on_projectmember_id"
+  end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
@@ -26,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_01_05_130711) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "project_id"
     t.index ["genre_id"], name: "index_manages_on_genre_id"
     t.index ["post_id"], name: "index_manages_on_post_id"
   end
@@ -42,6 +51,26 @@ ActiveRecord::Schema.define(version: 2020_01_05_130711) do
     t.integer "status"
     t.string "url"
     t.integer "user_id"
+  end
+
+  create_table "projectmembers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_projectmembers_on_project_id"
+    t.index ["user_id"], name: "index_projectmembers_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.text "reason"
+    t.string "summary"
+    t.integer "status"
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_genres", force: :cascade do |t|
