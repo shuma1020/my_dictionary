@@ -1,0 +1,2 @@
+module Mypage::ProjectHelper
+end

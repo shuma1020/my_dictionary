@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<div id="wrapper">
+  <aside id="sidebar">
+    <%= render "shared/sidebar"%>
+  </aside>
+  <div class="table-responsive">
+    <table class="list">
+      <tr>
+        <th class="list__item1">タイトル</th>
+        <th class="list__item2">内容</th>
+        <th class="list__item3">公開状況</th>
+        <th class="list__item4">経緯</th>
+        <th class="list__item5">投稿日</th>
+        <th class="list__item7">要約</th>
+        <th class="list__item8">参考URL</th>
+        <th class="list__item9">ジャンル</th>
+        <th class="list__item10">編集する</th>
+        <th class="list__item11">削除する</th>
+      </tr>
+      <% @projects.each do |p| %>
+        <tr>
+          <td><%= link_to post.title, mypage_post_path(p) %></td>
+          <td><%= p.body %></td>
+          <td><%= p.status_i18n %></td>
+          <td><%= p.reason %></td>
+          <td><%= p.posted_at.strftime("%m-%d") %></td>
+          <td><%= p.summary %></td>
+          <td><%= link_to p.url, p.url  %></td>
+          <% p.genres.each do |genre| %>
+            <td><%= genre.name %></td>
+          <% end %>
+          <td><%= link_to 'Edit', edit_mypage_project_path(p) %></td>
+          <td><%= link_to 'Destroy', mypage_project_path(p), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= paginate @projects%>
+    <br>
+  </div>
+</div>
+
+
