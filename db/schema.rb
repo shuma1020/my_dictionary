@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_052929) do
+ActiveRecord::Schema.define(version: 2020_01_12_054842) do
 
   create_table "emails", force: :cascade do |t|
     t.integer "projectmember_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
     t.index ["projectmember_id"], name: "index_emails_on_projectmember_id"
   end
 
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_052929) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "project_id"
     t.index ["genre_id"], name: "index_manages_on_genre_id"
     t.index ["post_id"], name: "index_manages_on_post_id"
   end
