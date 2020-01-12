@@ -1,0 +1,2 @@
+class Projectmember < ApplicationRecord
+end
