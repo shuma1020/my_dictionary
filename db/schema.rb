@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_01_05_130711) do
 
-  create_table "genres", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(version: 2020_01_05_130711) do
     t.integer "user_id"
   end
 
-  create_table "manages", force: :cascade do |t|
-    t.integer "genre_id"
-    t.integer "post_id"
+  create_table "manages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
+    t.bigint "genre_id"
+    t.bigint "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_01_05_130711) do
     t.index ["post_id"], name: "index_manages_on_post_id"
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.datetime "posted_at"
@@ -44,16 +44,7 @@ ActiveRecord::Schema.define(version: 2020_01_05_130711) do
     t.integer "user_id"
   end
 
-  create_table "user_genres", force: :cascade do |t|
-    t.integer "genre_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_user_genres_on_genre_id"
-    t.index ["user_id"], name: "index_user_genres_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
