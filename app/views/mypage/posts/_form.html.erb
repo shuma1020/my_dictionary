@@ -14,12 +14,11 @@
     <div class="form-group">
       <%= form.text_field :title, class:"form-control", placeholder:"タイトル", id: 'blog_title' %>
     </div >
-    <div id='editor'>
-      <div class="form-group">
-        <%= form.text_area :body, class:"form-control", placeholder:"自分の辞書をマークダウン記法で記入してみよう", id: 'blog_diary', "v-model" => "input", name: "blog[diary]" %>
-        <div v-html='input | marked'></div>
-      </div>
+
+    <div class="form-group">
+      <%= form.text_area :body, class:"form-control", placeholder:"自分の辞書をマークダウン記法で記入してみよう" %>
     </div>
+
 
     <div class="field">
       <%= form.label :status %>
