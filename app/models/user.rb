@@ -6,4 +6,6 @@ class User < ApplicationRecord
   has_many :posts
   enum status: {draft: 0, release:1}
   has_many :genres
+  has_many :project_members
+  has_many :projects, through: :project_members
 end

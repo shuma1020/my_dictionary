@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         get "search"
       end
     end
-    resources :projects, only: [:new, :create]
+    resources :projects, only: [:new, :create,:index]
     resources :genres do
       resources :posts, only: [:show]
     end
