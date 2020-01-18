@@ -3,6 +3,10 @@ class Mypage::ProjectsController < ApplicationController
     @project= current_user.projects.new
   end
 
+  def show
+    
+  end
+
   def create
     @project = current_user.projects.new(project_params)
     @projects = Project.all
