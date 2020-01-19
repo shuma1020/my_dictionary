@@ -21,8 +21,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: my_dictionary
+  database: my_dictionary_test
 
 production:
   <<: *default
-  database: my_dictionary
+  database: my_dictionary_pro
