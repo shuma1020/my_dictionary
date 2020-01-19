@@ -9,13 +9,16 @@ class Mypage::ProjectsController < ApplicationController
 
   def index
     @authorities = Authority.where(user_id: current_user)
+    @projects = current_user.projects
   end
 
   def create
-    @project = current_user.projects.new(project_params)
+    p @project = current_user.projects.new(project_params)
     @projects = Project.all
+    @authorities = @project.authorities.new(email: params[:email])
     respond_to do |format|
       if @project.save
+        @authorities.save
         format.html { redirect_to mypage_projects_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -29,6 +32,8 @@ class Mypage::ProjectsController < ApplicationController
     @users = User.search(params[:search])
     render "register"
   end
+
+
 
 
 

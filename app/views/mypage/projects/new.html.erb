@@ -4,13 +4,17 @@
       <%= form.text_field :name, class:"form-control" %>
   </div>
 
+  <%= fields_for @authority, :authorities do |form| %>
+    <%= form.label :メールアドレスを登録する %>
+    <%= form.text_field :email, class:"form-control" %>
+  <% end %>
 
   <div class="actions">
       <%= form.submit class:"btn btn-info" %>
   </div>
 <% end %>
 
-<%= form_tag :search_mypage_projects, method: :get ) do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag 'Search' %>
-  <% end %>
+<%= form_tag :search_mypage_projects, method: :get  do %>
+  <%= text_field_tag "search", params[:search] %>
+  <%= submit_tag 'Search' %>
+<% end %>
