@@ -4,7 +4,11 @@ class Mypage::ProjectsController < ApplicationController
   end
 
   def show
-    
+
+  end
+
+  def index
+    @authorities = Authority.where(user_id: current_user)
   end
 
   def create
@@ -20,6 +24,13 @@ class Mypage::ProjectsController < ApplicationController
       end
     end
   end
+
+  def search
+    @users = User.search(params[:search])
+    render "register"
+  end
+
+
 
   private
   def project_params

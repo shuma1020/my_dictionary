@@ -19,7 +19,9 @@ Rails.application.routes.draw do
         get "search"
       end
     end
-    resources :projects
+    resources :projects do
+      get "search", on: :collection
+    end
     resources :genres do
       resources :posts, only: [:show]
     end

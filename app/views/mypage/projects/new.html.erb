@@ -4,7 +4,13 @@
       <%= form.text_field :name, class:"form-control" %>
   </div>
 
+
   <div class="actions">
       <%= form.submit class:"btn btn-info" %>
   </div>
 <% end %>
+
+<%= form_tag :search_mypage_projects, method: :get ) do %>
+    <%= text_field_tag :search %>
+    <%= submit_tag 'Search' %>
+  <% end %>
