@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <%= javascript_include_tag 'demo_js' %>
-    <% if request.path.include?("/mypage/projects/#{params[:id]}")%>
+    <% if request.path.include?("/mypage/projects/#{:id}")%>
       <nav class="navbar navbar-expand navbar-dark bg-dark">
         <%= link_to "My辞書", :mypage_posts, class:"navbar-brand"%>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
@@ -36,6 +36,9 @@
             </li>
             <li class="nav-item">
               <%= link_to '辞書を作成する', new_mypage_post_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'チーム辞書', mypage_projects_path, class:"nav-link" %>
             </li>
           </ul>
           <%=form_tag :search_mypage_posts, method: :get, class: "form-inline mt-2 mt-md-0" do%>

@@ -1,5 +1,6 @@
 class Mypage::ProjectsController < ApplicationController
   before_action :correct_project, only: [:show]
+  before_action :correct_authority, only: [:show]
   def new
     @project = Project.new
   end
@@ -21,7 +22,7 @@ class Mypage::ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         @authority.save
-        @authority = current_user.authorities.new(email: current_user.email)
+        @authority = @project.authorities.new(email: current_user.email)
         @authority.save
         format.html { redirect_to mypage_projects_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @project }
@@ -67,12 +68,18 @@ class Mypage::ProjectsController < ApplicationController
   def correct_project
     @project = Project.find(params[:id])
     @project.users.each do |user|
-    @project.authorities.each do |authority|
-      unless current_user.email == authority.email || user.email == current_user.email
+      unless user.email == current_user.email
         return false
       end
     end
-      p "0000"
+  end
+
+  def correct_authority
+    @project = Project.find(params[:id])
+    @project.authorities.each do |authority|
+      unless current_user.email == authority.email
+        redirect_to mypage_projects_path
+      end
     end
   end
 end
