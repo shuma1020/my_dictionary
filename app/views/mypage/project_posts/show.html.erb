@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project_post.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= markdown(@project_post.body).html_safe %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @project_post.status %>
+</p>
+
+<p>
+  <strong>Posted at:</strong>
+  <%= @project_post.posted_at %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @project_post.reason %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @project_post.rank %>
+</p>
+
+<p>
+  <strong>Summary:</strong>
+  <%= @project_post.summary %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_mypage_project_project_post_path(@project, @project_post) %> |
+<%= link_to 'Back', mypage_project_project_posts_path %>

@@ -1,0 +1,73 @@
+<div class="container">
+  <%= form_with(model: [:mypage, @project,project_post], local: true) do |form| %>
+    <% if project_post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(project_post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+        <ul>
+          <% project_post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= form.text_field :title, class:"form-control", placeholder:"タイトル", id: 'blog_title' %>
+    </div >
+
+    <div class="form-group">
+      <%= form.text_area :body, class:"form-control", placeholder:"自分の辞書をマークダウン記法で記入してみよう" %>
+    </div>
+
+
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, Post.statuses.keys.map {|k| [I18n.t("enums.post.status.#{k}"), k]} ,class:"form-control" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :posted_at %>
+      <%= form.datetime_select :posted_at %>
+    </div>
+
+    <div class="form-group">
+      <%= form.text_area :reason, class:"form-control", placeholder:"メモした経緯を書いてみよう" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :rank %>
+      <%= form.select :rank, Post.ranks.keys, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :summary %>
+      <%= form.text_field :summary, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :URL %>
+      <%= form.text_field :url, class:"form-control" %>
+    </div>
+
+
+
+    <div class="actions">
+      <%= form.submit class:"btn btn-info" %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+window.onload = function() {
+new Vue({
+el: '#editor',
+data: {
+input: '<%== j @project_post.body %>',
+},
+filters: {
+marked: marked,
+},
+});
+};
+</script>
+

@@ -1,6 +1,8 @@
 <% @authorities.each do |authority| %>
-  <%= authority.project.name %>
+  <%=link_to authority.project.name, mypage_project_path(authority.project) %>
 <% end %>
+
+<p>あなたが作成したプロジェクト</p>
 <% @projects.each do |project| %>
-  <%= project.name %>
+  <%= link_to project.name, mypage_project_path(project) %>
 <% end %>

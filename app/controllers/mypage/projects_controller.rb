@@ -1,19 +1,20 @@
 class Mypage::ProjectsController < ApplicationController
   def new
-    @project= current_user.projects.new
+    @project_post = Project.find(params[:project_id])
   end
 
   def show
-
+    @project = Project.find(params[:id])
+    @posts =@project.project_posts
   end
 
   def index
-    @authorities = Authority.where(user_id: current_user)
+    @authorities = Authority.where(email: current_user.email)
     @projects = current_user.projects
   end
 
   def create
-    p @project = current_user.projects.new(project_params)
+    @project = current_user.projects.new(project_params)
     @projects = Project.all
     @authorities = @project.authorities.new(email: params[:email])
     respond_to do |format|
