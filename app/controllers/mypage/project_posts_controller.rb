@@ -84,9 +84,8 @@ class Mypage::ProjectPostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project_post
-      p @project = Project.find(params[:project_id])
-      p "333"
-      p @project_post = @project.project_posts.find(params[:id])
+      @project = Project.find(params[:project_id])
+      @project_post = @project.project_posts.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

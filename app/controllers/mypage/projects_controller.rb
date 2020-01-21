@@ -7,7 +7,7 @@ class Mypage::ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @project_posts =@project.project_posts
+    @project_posts = @project.project_posts
   end
 
   def index
@@ -78,7 +78,7 @@ class Mypage::ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.authorities.each do |authority|
       unless current_user.email == authority.email
-        redirect_to mypage_projects_path
+        redirect_to mypage_projects_path and return
       end
     end
   end
