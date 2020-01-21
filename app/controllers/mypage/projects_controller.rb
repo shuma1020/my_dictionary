@@ -1,11 +1,12 @@
 class Mypage::ProjectsController < ApplicationController
+  before_action :correct_project, only: [:show]
   def new
-    @project_post = Project.find(params[:project_id])
+    @project = Project.new
   end
 
   def show
     @project = Project.find(params[:id])
-    @posts =@project.project_posts
+    @project_posts =@project.project_posts
   end
 
   def index
@@ -14,17 +15,37 @@ class Mypage::ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.new(project_params)
+    @project = current_user.projects.create!(project_params)
     @projects = Project.all
-    @authorities = @project.authorities.new(email: params[:email])
+    @authority = @project.authorities.new(email: params[:email])
     respond_to do |format|
       if @project.save
-        @authorities.save
+        @authority.save
+        @authority = current_user.authorities.new(email: current_user.email)
+        @authority.save
         format.html { redirect_to mypage_projects_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
         format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    @authority = @project.authorities.new(email: params[:email])
+    respond_to do |format|
+      if @authority.save
+        format.html { redirect_to mypage_projects_path, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      else
+        format.html { render :edit }
+        format.json { render json: @project_post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,6 +61,18 @@ class Mypage::ProjectsController < ApplicationController
 
   private
   def project_params
-    params.require(:project).permit(:name)
+    params.require(:project).permit(:name,:user_id)
+  end
+
+  def correct_project
+    @project = Project.find(params[:id])
+    @project.users.each do |user|
+    @project.authorities.each do |authority|
+      unless current_user.email == authority.email || user.email == current_user.email
+        return false
+      end
+    end
+      p "0000"
+    end
   end
 end

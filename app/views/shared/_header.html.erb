@@ -1,47 +1,68 @@
 <% if user_signed_in? %>
   <%= javascript_include_tag 'demo_js' %>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <%= link_to "My辞書", :mypage_posts, class:"navbar-brand"%>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <% if request.path.include?("/mypage/projects/#{params[:id]}")%>
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <%= link_to "My辞書", :mypage_posts, class:"navbar-brand"%>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <%= link_to "Important!!", :important_mypage_posts , class:"nav-link"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Most!!", :most_mypage_posts , class:"nav-link"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to '辞書を作成する', new_mypage_post_path, class:"nav-link" %>
-        </li>
-      </ul>
-      <%=form_tag :search_mypage_posts, method: :get, class: "form-inline mt-2 mt-md-0" do%>
-        <%= text_field_tag "q", params[:q] , class:"form-control mr-sm-2" %>
-        <%= submit_tag "検索" ,class:"btn btn-outline-success my-2 my-sm-0"%>
-      <% end %>
-    </div>
-  </nav>
-<% else %>
-  <%= javascript_include_tag 'demo_js' %>
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <%= link_to "My辞書", "/" , class:"navbar-brand"%>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= link_to '辞書を作成する', new_mypage_project_project_post_path(@project), class:"nav-link" %>
+            </li>
+          </ul>
+          <%=form_tag :search_mypage_posts, method: :get, class: "form-inline mt-2 mt-md-0" do%>
+            <%= text_field_tag "q", params[:q] , class:"form-control mr-sm-2" %>
+            <%= submit_tag "検索" ,class:"btn btn-outline-success my-2 my-sm-0"%>
+          <% end %>
+        </div>
+      </nav>
+    <% else %>
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <%= link_to "My辞書", :mypage_posts, class:"navbar-brand"%>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <%= link_to "ユーザー登録", :new_user_registration , class:"nav-link"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to "ログイン", :new_user_session , class:"nav-link"%>
-        </li>
-      </ul>
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <%= link_to "Important!!", :important_mypage_posts , class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Most!!", :most_mypage_posts , class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to '辞書を作成する', new_mypage_post_path, class:"nav-link" %>
+            </li>
+          </ul>
+          <%=form_tag :search_mypage_posts, method: :get, class: "form-inline mt-2 mt-md-0" do%>
+            <%= text_field_tag "q", params[:q] , class:"form-control mr-sm-2" %>
+            <%= submit_tag "検索" ,class:"btn btn-outline-success my-2 my-sm-0"%>
+          <% end %>
+        </div>
+      </nav>
+    <% end %>
+  <% else %>
+    <%= javascript_include_tag 'demo_js' %>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <%= link_to "My辞書", "/" , class:"navbar-brand"%>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    </div>
-  </nav>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <%= link_to "ユーザー登録", :new_user_registration , class:"nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログイン", :new_user_session , class:"nav-link"%>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
 <% end %>

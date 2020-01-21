@@ -35,7 +35,7 @@ class Mypage::ProjectPostsController < ApplicationController
     @project_post = @project.project_posts.new(project_post_params)
     respond_to do |format|
       if @project_post.save
-        format.html { redirect_to mypage_project_project_posts_path, notice: 'Post was successfully created.' }
+        format.html { redirect_to mypage_project_path(@project), notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @project_post }
       else
         format.html { render :new }
