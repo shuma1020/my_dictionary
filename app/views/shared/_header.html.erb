@@ -12,6 +12,9 @@
             <li class="nav-item">
               <%= link_to '辞書を作成する', new_mypage_project_project_post_path(@project), class:"nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to 'チームを作成する', new_mypage_project_path, class:"nav-link" %>
+            </li>
           </ul>
           <%=form_tag :search_mypage_posts, method: :get, class: "form-inline mt-2 mt-md-0" do%>
             <%= text_field_tag "q", params[:q] , class:"form-control mr-sm-2" %>
@@ -39,6 +42,9 @@
             </li>
             <li class="nav-item">
               <%= link_to 'チーム辞書', mypage_projects_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'チームを作成する', new_mypage_project_path, class:"nav-link" %>
             </li>
           </ul>
           <%=form_tag :search_mypage_posts, method: :get, class: "form-inline mt-2 mt-md-0" do%>
