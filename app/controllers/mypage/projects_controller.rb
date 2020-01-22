@@ -22,8 +22,9 @@ class Mypage::ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         @authority.save
-        @authority = @project.authorities.new(email: current_user.email)
-        @authority.save
+        p "kkk"
+        p @authority = @project.authorities.new(email: current_user.email)
+        p @authority.save
         format.html { redirect_to mypage_projects_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -76,10 +77,8 @@ class Mypage::ProjectsController < ApplicationController
 
   def correct_authority
     @project = Project.find(params[:id])
-    @project.authorities.each do |authority|
-      unless current_user.email == authority.email
-        redirect_to mypage_projects_path and return
-      end
+    unless @project.authorities.where(email: current_user.email).exists?
+      redirect_to mypage_projects_path
     end
   end
 end
