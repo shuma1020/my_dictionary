@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_genres
   # GET /posts
   # GET /posts.json
   def index
@@ -102,7 +101,5 @@ class PostsController < ApplicationController
       params.require(:manage).permit(:post_id, :genre_id)
     end
 
-    def set_genres
-      @genres = current_user.genres
-    end
+
 end

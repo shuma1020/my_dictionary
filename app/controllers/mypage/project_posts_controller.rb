@@ -48,7 +48,7 @@ class Mypage::ProjectPostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @project_post.update
+      if @project_post.update(project_post_params)
         format.html { redirect_to mypage_project_project_post_path(@project,@project_post), notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else

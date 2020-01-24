@@ -23,7 +23,7 @@
           <td><%= post.body %></td>
           <td><%= post.status_i18n %></td>
           <td><%= post.reason %></td>
-          <td><%= post.posted_at.strftime("%m-%d") %></td>
+          <td><%= post.created_at.strftime("%m-%d") %></td>
           <td><%= post.summary %></td>
           <td><%= link_to post.url, post.url  %></td>
           <% post.genres.each do |genre| %>
