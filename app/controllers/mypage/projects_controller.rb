@@ -16,15 +16,14 @@ class Mypage::ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.create!(project_params)
+    @project = current_user.projects.create(project_params)
     @projects = Project.all
     @authority = @project.authorities.new(email: params[:email])
     respond_to do |format|
-      if @project.save
+      if @project.valid?
         @authority.save
-        p "kkk"
-        p @authority = @project.authorities.new(email: current_user.email)
-        p @authority.save
+        @authority = @project.authorities.new(email: current_user.email)
+        @authority.save
         format.html { redirect_to mypage_projects_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else

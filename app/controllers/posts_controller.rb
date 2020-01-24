@@ -103,6 +103,6 @@ class PostsController < ApplicationController
     end
 
     def set_genres
-      @genres = Genre.group(:name)
+      @genres = current_user.genres
     end
 end
