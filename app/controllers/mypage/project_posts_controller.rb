@@ -61,9 +61,9 @@ class Mypage::ProjectPostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
+    @project_post.destroy
     respond_to do |format|
-      format.html { redirect_to mypage_posts_path(@post), notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to mypage_project_path(@project), notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -84,8 +84,8 @@ class Mypage::ProjectPostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project_post
-      @project = Project.find(params[:project_id])
-      @project_post = @project.project_posts.find(params[:id])
+      project = Project.find(params[:project_id])
+      @project_post = project.project_posts.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
