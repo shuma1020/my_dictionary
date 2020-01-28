@@ -16,14 +16,10 @@ class Mypage::ProjectsController < ApplicationController
   end
 
   def create
-    @project = current_user.projects.create(project_params)
-    @projects = Project.all
-    @authority = @project.authorities.new(email: params[:email])
+    email = params[:email]
+    @project = Project.create_with_authority(project_params, current_user, email)
     respond_to do |format|
       if @project.valid?
-        @authority.save
-        @authority = @project.authorities.new(email: current_user.email)
-        @authority.save
         format.html { redirect_to mypage_projects_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -66,17 +62,15 @@ class Mypage::ProjectsController < ApplicationController
   end
 
   def correct_project
-    @project = Project.find(params[:id])
-    @project.users.each do |user|
-      unless user.email == current_user.email
-        return false
-      end
+    project = Project.find(params[:id])
+    unless project.users.where(email: current_user.email)
+      return false
     end
   end
 
   def correct_authority
-    @project = Project.find(params[:id])
-    unless @project.authorities.where(email: current_user.email).exists?
+    project = Project.find(params[:id])
+    unless project.authorities.where(email: current_user.email).exists?
       redirect_to mypage_projects_path
     end
   end
