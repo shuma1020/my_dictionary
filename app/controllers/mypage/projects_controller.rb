@@ -1,5 +1,4 @@
 class Mypage::ProjectsController < ApplicationController
-  before_action :correct_project, only: [:show]
   before_action :correct_authority, only: [:show]
   def new
     @project = Project.new
@@ -70,7 +69,11 @@ class Mypage::ProjectsController < ApplicationController
 
   def correct_authority
     project = Project.find(params[:id])
-    unless project.authorities.where(email: current_user.email).exists?
+
+    if project.users.where(email: current_user.email).exists?
+      project.users
+    elsif  project.authorities.where(email: current_user.email).exists?
+    else
       redirect_to mypage_projects_path
     end
   end
