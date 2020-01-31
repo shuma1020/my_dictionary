@@ -71,7 +71,6 @@ class Mypage::ProjectsController < ApplicationController
     project = Project.find(params[:id])
 
     if project.users.where(email: current_user.email).exists?
-      project.users
     elsif  project.authorities.where(email: current_user.email).exists?
     else
       redirect_to mypage_projects_path
