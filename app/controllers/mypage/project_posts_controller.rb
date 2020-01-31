@@ -3,7 +3,7 @@ class Mypage::ProjectPostsController < ApplicationController
   before_action :set_project_post, only: [:show, :edit, :update, :destroy]
   before_action :set_genres
   before_action :set_project
-  before_action :correct_authority, only: [:show, :edit, :update, :destroy]
+  before_action :correct_authority, only: [:show, :edit, :update, :destroy,:index]
   # GET /posts
   # GET /posts.json
   def index
@@ -112,7 +112,9 @@ class Mypage::ProjectPostsController < ApplicationController
 
     def correct_authority
       project = Project.find(params[:project_id])
-      unless project.authorities.where(email: current_user.email).exists?
+      if project.users.where(email: current_user.email).exists?
+      elsif  project.authorities.where(email: current_user.email).exists?
+      else
         redirect_to mypage_projects_path
       end
     end

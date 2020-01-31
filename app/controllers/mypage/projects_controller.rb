@@ -60,16 +60,8 @@ class Mypage::ProjectsController < ApplicationController
     params.require(:project).permit(:name,:user_id)
   end
 
-  def correct_project
-    project = Project.find(params[:id])
-    unless project.users.where(email: current_user.email)
-      return false
-    end
-  end
-
   def correct_authority
     project = Project.find(params[:id])
-
     if project.users.where(email: current_user.email).exists?
     elsif  project.authorities.where(email: current_user.email).exists?
     else
