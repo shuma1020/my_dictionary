@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_genres
+  before_action :set_genres, if: :user_signed_in?
   # GET /posts
   # GET /posts.json
   def index
@@ -103,6 +103,6 @@ class PostsController < ApplicationController
     end
 
     def set_genres
-      @genres = Genre.group(:name)
+      @genres = current_user.genres
     end
 end

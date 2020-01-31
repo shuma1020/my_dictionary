@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :mypage do
+    get 'authorities/create'
+  end
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
@@ -18,6 +21,11 @@ Rails.application.routes.draw do
         get "most"
         get "search"
       end
+    end
+    resources :projects do
+      get "search", on: :collection
+      resources :authorities
+      resources :project_posts
     end
     resources :genres do
       resources :posts, only: [:show]

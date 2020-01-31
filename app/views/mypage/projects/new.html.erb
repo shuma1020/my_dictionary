@@ -1,0 +1,16 @@
+<%= form_with(model: [:mypage, @project], local: true) do |form| %>
+  <div class="form-group">
+      <%= form.label :チーム名を入力する %>
+      <%= form.text_field :name, class:"form-control" %>
+  </div>
+
+  <%= fields_for @authority, :authorities do |form| %>
+    <%= form.label :メールアドレスを登録する %>
+    <%= form.text_field :email, class:"form-control" %>
+  <% end %>
+
+  <div class="actions">
+      <%= form.submit class:"btn btn-info" %>
+  </div>
+<% end %>
+

@@ -1,0 +1,9 @@
+<h4>あなたが参加している辞書</h4>
+<% @authorities.each do |authority| %>
+  <%=link_to authority.project.name, mypage_project_path(authority.project) %>
+<% end %>
+
+<h4>あなたが作成した辞書</h4>
+<% @projects.each do |project| %>
+  <u><%= link_to project.name, mypage_project_path(project) %></u>
+<% end %>
