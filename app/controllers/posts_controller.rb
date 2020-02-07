@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     if Genre.exists?(id: params[:id]) or Genre.exists?(id: params[:genre_id])
-    @genre = Genre.find(params[:genre_id])
+      @genre = Genre.find(params[:genre_id])
     end
   end
 

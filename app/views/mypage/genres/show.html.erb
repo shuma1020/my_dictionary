@@ -21,7 +21,7 @@
     <tbody>
         <% @posts.each do |post| %>
           <tr>
-            <th scope="row"><%= link_to post.title, mypage_genre_post_path(@genre, post) %></th>
+            <th scope="row"><%= link_to post.title, mypage_post_path(post) %></th>
             <td><%= post.body.truncate(15) %></td>
             <td><%= post.status %></td>
             <td><%= post.reason %></td>
